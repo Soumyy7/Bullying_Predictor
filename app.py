@@ -91,7 +91,6 @@ def main():
 
 
 
-
         final_text = df['tweet']
 
         final_text.iloc[0] = ' '.join(final_text.iloc[0])

@@ -1,23 +1,43 @@
 <!DOCTYPE html>
 <html>
   <style>
+    body {
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
     form {
       margin: auto;
       width: 35%;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     }
     .result {
       margin: auto;
       width: 35%;
       border: 1px solid #ccc;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    }
+    textarea {
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .bar {
+      height: 20px;
     }
   </style>
+
   <head>
     <title>Cyberbullying Tweet Detection</title>
   </head>
   <form action="{{ url_for('main') }}" method="POST">
     <fieldset>
       <legend>Enter a Sample Tweet:</legend>
-      <textarea name="tweet" rows="10" cols="80" required></textarea>
+      <textarea name="tweet" rows="10" cols="65" required></textarea>
       <br />
       <br />
       <input type="submit" />
@@ -25,16 +45,42 @@
   </form>
   <br />
   <div class="result" align="center">
-    {% if rating1 and rating2 and rating3 and rating4 and rating5 %}{% for
+    {% if rating1 and rating2 and rating3 and rating4 and rating5 %} {% for
     variable, value in original_input.items() %}
     <b>{{ variable }}</b> : {{ value }} {% endfor %}
     <br />
     <br />
     <p style="font-size: 30px">The Tweet is rated:</p>
-    <p style="font-size: 40px">
-      {{ rating1 }}% Age, {{ rating2 }}% Ethnicity, {{ rating3 }}% Gender, {{
-      rating4 }}% Religion and {{ rating5 }}% Not_cyberbullying
-    </p>
+    <div>
+      Age:
+      <div class="bar" style="width: {{rating1}}%; background-color: #4E79A7">
+        {{rating1}}%
+      </div>
+    </div>
+    <div>
+      Ethnicity:
+      <div class="bar" style="width: {{rating2}}%; background-color: #F28E2B">
+        {{rating2}}%
+      </div>
+    </div>
+    <div>
+      Gender:
+      <div class="bar" style="width: {{rating3}}%; background-color: #E15759">
+        {{rating3}}%
+      </div>
+    </div>
+    <div>
+      Religion:
+      <div class="bar" style="width: {{rating4}}%; background-color: #76B7B2">
+        {{rating4}}%
+      </div>
+    </div>
+    <div>
+      Not Cyberbullying:
+      <div class="bar" style="width: {{rating5}}%; background-color: #59A14F">
+        {{rating5}}%
+      </div>
+    </div>
     {% endif %}
   </div>
 </html>
